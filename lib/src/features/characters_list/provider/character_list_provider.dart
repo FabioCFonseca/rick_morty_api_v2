@@ -6,7 +6,6 @@ import 'package:rick_morty_flutter/src/common/domain/app_error.dart';
 import 'package:rick_morty_flutter/src/features/characters_list/domain/character_model.dart';
 import 'package:rick_morty_flutter/src/features/characters_list/domain/i_character_repository.dart';
 import 'package:rick_morty_flutter/src/features/favorites_list/application/favorites_list_provider.dart';
-import 'package:rick_morty_flutter/src/utils/user_preferences.dart';
 
 enum CharacterListProviderState { loading, success, error }
 
