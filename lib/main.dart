@@ -1,14 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 import 'package:rick_morty_flutter/src/common/presentation/home_page.dart';
+import 'package:rick_morty_flutter/src/features/characters_list/infrastructure/characters_list_repository.dart';
+import 'package:rick_morty_flutter/src/features/characters_list/provider/character_list_provider.dart';
+import 'package:rick_morty_flutter/src/features/favorites_list/application/favorites_list_provider.dart';
 
 Future<void> main() async {
+
+
   runApp(
-    const MyApp(),
+    MultiProvider(
+      providers: [
+        //Favorites feature
+        ChangeNotifierProvider(create: (context) => FavoritesListProvider()),
+        // Character List Feature
+        Provider(create: (context) => CharactersListRepository()),
+        ChangeNotifierProvider(
+          create: (context) => CharacterListProvider(
+            repository: context.read<CharactersListRepository>(),
+          )..controllerStart(context),
+        ),
+      ],
+      child: const MyApp(),
+    ),
   );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  // ignore: use_key_in_widget_constructors, avoid_unused_constructor_parameters
+  const MyApp({Key? key});
 
   // Variáveis de esquema de cores para o app
   Color get primaryColor => const Color(0xff00A9D4);
@@ -65,7 +86,7 @@ class MyApp extends StatelessWidget {
     );
 
     return MaterialApp(
-      title: 'Rick & Morty API',
+      title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: themeData,
       home: const HomePage(),
