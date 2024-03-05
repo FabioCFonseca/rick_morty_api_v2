@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:rick_morty_flutter/src/common/domain/i_card_model.dart';
 
-import 'package:rick_morty_flutter/src/features/favorites_list/domain/favorites_model.dart';
 import 'package:rick_morty_flutter/src/utils/user_preferences.dart';
 
 class FavoritesListProvider extends ChangeNotifier {
-  List<FavoritesModel> favoriteCharacters = [];
+  List<ICardModel> favoriteCharacters = [];
 
   //TOGGLE FUNCTIONALITY
-  void toggleFavorite(FavoritesModel character) {
+  void toggleFavorite(ICardModel character) {
     final index = favoriteCharacters.indexOf(character);
     if (index == -1) {
       favoriteCharacters.add(character);

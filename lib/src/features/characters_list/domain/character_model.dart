@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-import 'package:rick_morty_flutter/src/features/favorites_list/domain/favorites_model.dart';
+import 'package:rick_morty_flutter/src/common/domain/i_card_model.dart';
 
 // ignore_for_file: hash_and_equals
 
@@ -9,11 +9,15 @@ import 'package:rick_morty_flutter/src/features/favorites_list/domain/favorites_
 // tanto a interface do repositório quanto o model permitindo o re uso do código
 // devido ao desacoplamento
 
-class CharacterModel extends FavoritesModel {
+class CharacterModel implements ICardModel {
+  final int id;
+  final String name;
+  final String image;
+
   const CharacterModel({
-    required super.id,
-    required super.name,
-    required super.image,
+    required this.id,
+    required this.name,
+    required this.image,
   });
 
   @override

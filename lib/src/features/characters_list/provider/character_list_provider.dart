@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:rick_morty_flutter/src/common/domain/app_error.dart';
-import 'package:rick_morty_flutter/src/features/characters_list/domain/character_model.dart';
+import 'package:rick_morty_flutter/src/common/domain/i_card_model.dart';
 import 'package:rick_morty_flutter/src/features/characters_list/domain/i_character_repository.dart';
 import 'package:rick_morty_flutter/src/features/favorites_list/application/favorites_list_provider.dart';
 import 'package:rick_morty_flutter/src/utils/user_preferences.dart';
@@ -18,7 +18,7 @@ class CharacterListProvider extends ChangeNotifier {
   final ICharacterRepository repository;
 
   // MODELS FOR UI
-  List<CharacterModel> characters = [];
+  List<ICardModel> characters = [];
   late AppError appError;
 
   //PROVIDER STATE

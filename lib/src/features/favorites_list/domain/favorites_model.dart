@@ -5,7 +5,9 @@
 // tanto a interface do repositório quanto o model permitindo o re uso do código
 // devido ao desacoplamento
 
-class FavoritesModel {
+import 'package:rick_morty_flutter/src/common/domain/i_card_model.dart';
+
+class FavoritesModel implements ICardModel {
   final int id;
   final String name;
   final String image;

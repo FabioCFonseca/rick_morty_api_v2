@@ -1,0 +1,28 @@
+SINGLE RESPONSABILITY
+- As classes usadas no projeto, como modelos, repositórios, controladores e apresentação, têm 
+responsabilidades únicas distintas.
+
+OPEN/CLOSED
+- Na infraestrutura do projeto, o padrão Repository foi usado para segregar a chamada da API por 
+meio de interfaces. Isso permitiu adicionar a funcionalidade de persistência do aplicativo após a 
+chamada da API já estar codificada, sem modificar o código que utiliza o repositório.
+
+LISKOV SUBSTITUTION
+- Tanto o modelo de favoritos quanto o modelo de lista de personagens implementam a interface 
+ICardModel, garantindo que eles possam ser intercambiáveis na página de Favoritos e na página de 
+Lista de Personagens. Além disso, nos controladores, a instância da classe de serviço pode ser 
+alterada para outra implementação que siga a interface do repositório sem afetar o controlador.
+
+INTERFACE SEGREGATION
+- Todas as interfaces e implementações da aplicação, a interface do repositório e a interface do 
+modelo de cartão, aplicam apenas os requisitos mínimos para que as classes filhas funcionem 
+corretamente.
+
+DEPENDENCY INVERSION
+- As camadas de alto nível da aplicação estão segregadas da implementação das camadas inferiores 
+por meio do uso de interfaces.
+
+
+
+
+
