@@ -44,7 +44,7 @@ class CustomCard extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) =>
-                          DetailsPage(selectedCharacter: character.id),
+                          DetailsPage(),
                     ),
                   ),
                   child: Text(

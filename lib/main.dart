@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rick_morty_flutter/src/common/presentation/home_page.dart';
 
 Future<void> main() async {
   runApp(
@@ -67,7 +68,7 @@ class MyApp extends StatelessWidget {
       title: 'Rick & Morty API',
       debugShowCheckedModeBanner: false,
       theme: themeData,
-      home: const Placeholder(),
+      home: const HomePage(),
     );
   }
 }
