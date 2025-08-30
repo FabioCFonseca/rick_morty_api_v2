@@ -73,7 +73,7 @@ class MyApp extends StatelessWidget {
       ),
       colorScheme: colorScheme,
       scaffoldBackgroundColor: backgroundColor,
-      cardTheme: CardThemeData(
+      cardTheme: CardTheme(
         color: cardColor,
         shape: RoundedRectangleBorder(
           side: BorderSide(color: borderColor, width: 2),

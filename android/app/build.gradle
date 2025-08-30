@@ -27,7 +27,7 @@ apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
     namespace "com.example.rick_morty_api_v2"
-    compileSdkVersion flutter.compileSdkVersion
+    compileSdkVersion 34
     ndkVersion flutter.ndkVersion
 
     compileOptions {
@@ -52,6 +52,22 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+    }
+
+    flavorDimensions "default"
+    productFlavors { 
+        prod {
+            dimension = "default"
+            applicationId = "com.hexagon.app"
+            versionNameSuffix = ""
+            manifestPlaceholders = [appName: "Hexagon", hostName: "hexagon-appx.web.app" ]
+        }
+        dev {
+            dimension = "default"
+            applicationId = "com.hexagon.app_dev"
+            versionNameSuffix = "_dev"
+            manifestPlaceholders = [appName: "Hexagon Dev",  hostName: "hexagon-appx-dev.web.app" ]
+        }
     }
 
     buildTypes {
