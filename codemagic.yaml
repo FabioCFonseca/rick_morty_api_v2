@@ -42,13 +42,13 @@ workflows:
             --flavor dev \
             --dart-define-from-file=.env/dart-define-dev.json
       
-      - name: 'Build iOS - DEV'
-        script: |
-          # Para iOS, a flag --flavor seleciona o "Scheme" correspondente no Xcode.
-          # É uma boa prática garantir que você tenha um Scheme chamado 'dev'.
-          flutter build ios --release \
-            --flavor dev \
-            --dart-define-from-file=.env/dart-define-dev.json
+      # - name: 'Build iOS - DEV'
+      #   script: |
+      #     # Para iOS, a flag --flavor seleciona o "Scheme" correspondente no Xcode.
+      #     # É uma boa prática garantir que você tenha um Scheme chamado 'dev'.
+      #     flutter build ios --release \
+      #       --flavor dev \
+      #       --dart-define-from-file=.env/dart-define-dev.json
 
       - name: 'Build Web - DEV'
         script: |
