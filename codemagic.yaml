@@ -1,5 +1,5 @@
 # codemagic.yaml
-# Este arquivo define os workflows de build para o seu projeto Flutter no CodeMagic.
+# Versão corrigida com o instance_type correto e caminhos de build ajustados.
 
 workflows:
   # ===================================================================
@@ -7,33 +7,29 @@ workflows:
   # ===================================================================
   build-dev-flavor:
     name: 'Build DEV Flavor (Android, iOS, Web)'
-    instance_type: macos_m2_instance # Constrói na máquina macOS M2, como solicitado.
-    max_build_duration: 60 # Duração máxima de 60 minutos para o build.
+    instance_type: mac_mini_m2 # CORRIGIDO: Este é o nome correto da instância.
+    max_build_duration: 60
     triggering:
       events:
         - push
       branch_patterns:
-        - pattern: 'main' # Aciona o build em pushes para a branch 'main'.
+        - pattern: 'main'
           include: true
     environment:
-      flutter: 3.16.0 # Versão específica do Flutter.
-      xcode: 16.4 # Versão específica do Xcode.
-      cocoapods: default # Usa a versão padrão do CocoaPods.
+      flutter: 3.16.0
+      xcode: 16.4
+      cocoapods: default
       vars:
-        # Variáveis usadas para gerar o arquivo dart-define dinamicamente.
-        FLAVOR: "DEV"
+        # Renomeado para evitar conflito com a variável de ambiente do CodeMagic
+        FLAVOR_VALUE: "DEV" 
     scripts:
       - name: 'Gerar arquivo .env/dart-define-dev.json'
         script: |
-          # Cria o diretório .env se ele não existir.
           mkdir -p .env
-
-          # Cria o arquivo JSON dinamicamente dentro da pasta .env.
           echo "Gerando .env/dart-define-dev.json..."
           echo "{" > .env/dart-define-dev.json
-          echo '  "FLAVOR": "'$FLAVOR'"' >> .env/dart-define-dev.json
+          echo '  "FLAVOR": "'$FLAVOR_VALUE'"' >> .env/dart-define-dev.json
           echo "}" >> .env/dart-define-dev.json
-          
           echo "Conteúdo do arquivo gerado:"
           cat .env/dart-define-dev.json
 
@@ -41,26 +37,21 @@ workflows:
         script: |
           flutter packages pub get
 
-      - name: 'Verificar ambiente Flutter'
-        script: |
-          flutter doctor -v
-
       - name: 'Build Android (APK) - DEV'
         script: |
           flutter build apk --release \
-            --dart-define-from-file=dart-define-dev.json
+            --dart-define-from-file=.env/dart-define-dev.json # CORRIGIDO: Caminho completo para o arquivo.
       
       - name: 'Build iOS - DEV'
         script: |
           flutter build ios --release \
-            --dart-define-from-file=dart-define-dev.json
+            --dart-define-from-file=.env/dart-define-dev.json # CORRIGIDO: Caminho completo para o arquivo.
 
       - name: 'Build Web - DEV'
         script: |
           flutter build web --release \
-            --dart-define-from-file=dart-define-dev.json
+            --dart-define-from-file=.env/dart-define-dev.json # CORRIGIDO: Caminho completo para o arquivo.
     artifacts:
-      # Coleta os artefatos de build para download.
       - build/app/outputs/apk/release/*.apk
       - build/ios/ipa/*.ipa
       - $HOME/Library/Developer/Xcode/DerivedData/**/Build/Products/Release-iphoneos/*.app
